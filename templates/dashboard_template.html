@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>__TITLE__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    --navy-deep: #081a33;
+    --navy: #0c2340;
+    --navy-mid: #16345c;
+    --navy-tint: #e7ebf1;
+    --paper: #f2f4f7;
+    --surface: #ffffff;
+    --ink: #14181f;
+    --ink-muted: #5b6472;
+    --line: #d8dce3;
+    --stripe: rgba(255, 255, 255, 0.05);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --navy-deep: #060f1f;
+      --navy: #0e2545;
+      --navy-mid: #1c3a63;
+      --navy-tint: #16283f;
+      --paper: #0a1526;
+      --surface: #101f38;
+      --ink: #f2f4f7;
+      --ink-muted: #9aa5b3;
+      --line: #223351;
+      --stripe: rgba(255, 255, 255, 0.04);
+    }
+  }
+  :root[data-theme="dark"] {
+    --navy-deep: #060f1f;
+    --navy: #0e2545;
+    --navy-mid: #1c3a63;
+    --navy-tint: #16283f;
+    --paper: #0a1526;
+    --surface: #101f38;
+    --ink: #f2f4f7;
+    --ink-muted: #9aa5b3;
+    --line: #223351;
+    --stripe: rgba(255, 255, 255, 0.04);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 32px; }
+  .hero {
+    background-image:
+      repeating-linear-gradient(90deg, var(--stripe) 0 2px, transparent 2px 28px),
+      linear-gradient(180deg, var(--navy-mid), var(--navy-deep));
+    color: #fff;
+    padding: calc(28px + env(safe-area-inset-top, 0px)) 20px 26px;
+    margin: 0 -16px 20px;
+    border-radius: 0 0 20px 20px;
+  }
+  .hero__row { display: flex; align-items: center; gap: 16px; }
+  .hero__number {
+    flex: none;
+    width: 56px; height: 56px;
+    border: 2px solid rgba(255,255,255,0.55);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    font-variant-numeric: tabular-nums;
+  }
+  .hero__name {
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
+    font-size: clamp(28px, 8vw, 38px);
+    line-height: 1.05;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .hero__team {
+    margin: 4px 0 0;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.75);
+  }
+  .hero__meta {
+    margin: 14px 0 0;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+  h2.section {
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 28px 0 10px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .stat-grid--secondary { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 420px) {
+    .stat-grid--hero { grid-template-columns: repeat(4, 1fr); }
+    .stat-grid--secondary { grid-template-columns: repeat(3, 1fr); }
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat--hero {
+    background: var(--navy-tint);
+    border-color: transparent;
+  }
+  .stat--hero .stat__value {
+    color: var(--navy);
+  }
+  .stat__value {
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+  .stat--secondary .stat__value { font-size: 19px; }
+  .stat__label {
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  footer {
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--ink-muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="hero__row">
+      <div class="hero__number">__PLAYER_NUMBER__</div>
+      <div>
+        <p class="hero__name">__PLAYER_NAME__</p>
+        <p class="hero__team">__TEAM_NAME__</p>
+      </div>
+    </div>
+    <p class="hero__meta">__PLAYER_META__</p>
+  </div>
+
+  <h2 class="section">__SEASON_YEAR__ Season</h2>
+  <div class="stat-grid stat-grid--hero">
+__HERO_STATS_HTML__
+  </div>
+  <div class="stat-grid stat-grid--secondary" style="margin-top:10px;">
+__SECONDARY_STATS_HTML__
+  </div>
+
+  <h2 class="section">Career</h2>
+  <div class="stat-grid stat-grid--secondary">
+__CAREER_STATS_HTML__
+  </div>
+
+  <footer>
+    <span>Source: MLB Stats API (statsapi.mlb.com)</span>
+    <span>Updated __LAST_UPDATED__</span>
+  </footer>
+</div>
+<script type="application/json" id="raw-data">
+__DATA_JSON__
+</script>
+</body>
+</html>
