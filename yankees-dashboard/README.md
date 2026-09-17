@@ -6,6 +6,8 @@ public [MLB Stats API](https://statsapi.mlb.com) — no API key needed.
 
 ## Regenerating `index.html`
 
+From this directory (`yankees-dashboard/`):
+
 ```
 pip install -r requirements.txt
 python scripts/build_dashboard.py "aaron judge"
