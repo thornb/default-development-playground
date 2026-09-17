@@ -74,7 +74,12 @@ def build(name_or_id: str) -> None:
     secondary_html = stat_tiles(season_stats, SECONDARY_STATS, "secondary")
     career_html = stat_tiles(career_stats, SECONDARY_STATS, "secondary")
 
-    team_name = (bio.get("currentTeam") or {}).get("name", "")
+    team_name = (
+        (bio.get("currentTeam") or {}).get("name")
+        or (season_split.get("team") or {}).get("name")
+        or (career_split.get("team") or {}).get("name")
+        or ""
+    )
     position = (bio.get("primaryPosition") or {}).get("abbreviation", "")
     bats = (bio.get("batSide") or {}).get("description", "")
     throws = (bio.get("pitchHand") or {}).get("description", "")

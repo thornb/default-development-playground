@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aaron Judge Stats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    --navy-deep: #081a33;
+    --navy: #0c2340;
+    --navy-mid: #16345c;
+    --navy-tint: #e7ebf1;
+    --hero-ink: #0c2340;
+    --paper: #f2f4f7;
+    --surface: #ffffff;
+    --ink: #14181f;
+    --ink-muted: #5b6472;
+    --line: #d8dce3;
+    --stripe: rgba(255, 255, 255, 0.05);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --navy-deep: #060f1f;
+      --navy: #0e2545;
+      --navy-mid: #1c3a63;
+      --navy-tint: #1c3159;
+      --hero-ink: #eaf1ff;
+      --paper: #0a1526;
+      --surface: #101f38;
+      --ink: #f2f4f7;
+      --ink-muted: #9aa5b3;
+      --line: #223351;
+      --stripe: rgba(255, 255, 255, 0.04);
+    }
+  }
+  :root[data-theme="dark"] {
+    --navy-deep: #060f1f;
+    --navy: #0e2545;
+    --navy-mid: #1c3a63;
+    --navy-tint: #1c3159;
+    --hero-ink: #eaf1ff;
+    --paper: #0a1526;
+    --surface: #101f38;
+    --ink: #f2f4f7;
+    --ink-muted: #9aa5b3;
+    --line: #223351;
+    --stripe: rgba(255, 255, 255, 0.04);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 16px 32px; }
+  .hero {
+    background-image:
+      repeating-linear-gradient(90deg, var(--stripe) 0 2px, transparent 2px 28px),
+      linear-gradient(180deg, var(--navy-mid), var(--navy-deep));
+    color: #fff;
+    padding: calc(28px + env(safe-area-inset-top, 0px)) 20px 26px;
+    margin: 0 -16px 20px;
+    border-radius: 0 0 20px 20px;
+  }
+  .hero__row { display: flex; align-items: center; gap: 16px; }
+  .hero__number {
+    flex: none;
+    width: 56px; height: 56px;
+    border: 2px solid rgba(255,255,255,0.55);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    font-variant-numeric: tabular-nums;
+  }
+  .hero__name {
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
+    font-size: clamp(28px, 8vw, 38px);
+    line-height: 1.05;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .hero__team {
+    margin: 4px 0 0;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.75);
+  }
+  .hero__meta {
+    margin: 14px 0 0;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+  h2.section {
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 28px 0 10px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .stat-grid--secondary { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 420px) {
+    .stat-grid--hero { grid-template-columns: repeat(4, 1fr); }
+    .stat-grid--secondary { grid-template-columns: repeat(3, 1fr); }
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat--hero {
+    background: var(--navy-tint);
+    border-color: transparent;
+  }
+  .stat--hero .stat__value {
+    color: var(--hero-ink);
+  }
+  .stat__value {
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+  .stat--secondary .stat__value { font-size: 19px; }
+  .stat__label {
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  footer {
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--ink-muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="hero__row">
+      <div class="hero__number">99</div>
+      <div>
+        <p class="hero__name">Aaron Judge</p>
+        <p class="hero__team">New York Yankees</p>
+      </div>
+    </div>
+    <p class="hero__meta">RF &middot; Bats R/Throws R &middot; 6' 7", 282 lb &middot; Age 34</p>
+  </div>
+
+  <h2 class="section">2026 Season</h2>
+  <div class="stat-grid stat-grid--hero">
+<div class="stat stat--hero"><span class="stat__value">.241</span><span class="stat__label">AVG</span></div>
+<div class="stat stat--hero"><span class="stat__value">18</span><span class="stat__label">HR</span></div>
+<div class="stat stat--hero"><span class="stat__value">41</span><span class="stat__label">RBI</span></div>
+<div class="stat stat--hero"><span class="stat__value">.871</span><span class="stat__label">OPS</span></div>
+  </div>
+  <div class="stat-grid stat-grid--secondary" style="margin-top:10px;">
+<div class="stat stat--secondary"><span class="stat__value">66</span><span class="stat__label">Games</span></div>
+<div class="stat stat--secondary"><span class="stat__value">57</span><span class="stat__label">Hits</span></div>
+<div class="stat stat--secondary"><span class="stat__value">45</span><span class="stat__label">Runs</span></div>
+<div class="stat stat--secondary"><span class="stat__value">10</span><span class="stat__label">Doubles</span></div>
+<div class="stat stat--secondary"><span class="stat__value">18</span><span class="stat__label">Home Runs</span></div>
+<div class="stat stat--secondary"><span class="stat__value">43</span><span class="stat__label">Walks</span></div>
+<div class="stat stat--secondary"><span class="stat__value">85</span><span class="stat__label">Strikeouts</span></div>
+<div class="stat stat--secondary"><span class="stat__value">5</span><span class="stat__label">Stolen Bases</span></div>
+<div class="stat stat--secondary"><span class="stat__value">.360</span><span class="stat__label">OBP</span></div>
+<div class="stat stat--secondary"><span class="stat__value">.511</span><span class="stat__label">SLG</span></div>
+  </div>
+
+  <h2 class="section">Career</h2>
+  <div class="stat-grid stat-grid--secondary">
+<div class="stat stat--secondary"><span class="stat__value">1211</span><span class="stat__label">Games</span></div>
+<div class="stat stat--secondary"><span class="stat__value">1262</span><span class="stat__label">Hits</span></div>
+<div class="stat stat--secondary"><span class="stat__value">918</span><span class="stat__label">Runs</span></div>
+<div class="stat stat--secondary"><span class="stat__value">213</span><span class="stat__label">Doubles</span></div>
+<div class="stat stat--secondary"><span class="stat__value">386</span><span class="stat__label">Home Runs</span></div>
+<div class="stat stat--secondary"><span class="stat__value">860</span><span class="stat__label">Walks</span></div>
+<div class="stat stat--secondary"><span class="stat__value">1454</span><span class="stat__label">Strikeouts</span></div>
+<div class="stat stat--secondary"><span class="stat__value">70</span><span class="stat__label">Stolen Bases</span></div>
+<div class="stat stat--secondary"><span class="stat__value">.410</span><span class="stat__label">OBP</span></div>
+<div class="stat stat--secondary"><span class="stat__value">.610</span><span class="stat__label">SLG</span></div>
+  </div>
+
+  <footer>
+    <span>Source: MLB Stats API (statsapi.mlb.com)</span>
+    <span>Updated Sep 17, 2026 19:42 UTC</span>
+  </footer>
+</div>
+<script type="application/json" id="raw-data">
+{
+  "fetched_at": "2026-09-17T19:42:07.071299+00:00",
+  "bio": {
+    "id": 592450,
+    "fullName": "Aaron Judge",
+    "link": "/api/v1/people/592450",
+    "firstName": "Aaron",
+    "lastName": "Judge",
+    "primaryNumber": "99",
+    "birthDate": "1992-04-26",
+    "currentAge": 34,
+    "birthCity": "Linden",
+    "birthStateProvince": "CA",
+    "birthCountry": "USA",
+    "height": "6' 7\"",
+    "weight": 282,
+    "active": true,
+    "primaryPosition": {
+      "code": "9",
+      "name": "Outfielder",
+      "type": "Outfielder",
+      "abbreviation": "RF"
+    },
+    "useName": "Aaron",
+    "useLastName": "Judge",
+    "middleName": "James",
+    "boxscoreName": "Judge",
+    "nickName": "Baj",
+    "gender": "M",
+    "isPlayer": true,
+    "isVerified": true,
+    "draftYear": 2013,
+    "mlbDebutDate": "2016-08-13",
+    "batSide": {
+      "code": "R",
+      "description": "Right"
+    },
+    "pitchHand": {
+      "code": "R",
+      "description": "Right"
+    },
+    "nameFirstLast": "Aaron Judge",
+    "nameSlug": "aaron-judge-592450",
+    "firstLastName": "Aaron Judge",
+    "lastFirstName": "Judge, Aaron",
+    "lastInitName": "Judge, A",
+    "initLastName": "A Judge",
+    "fullFMLName": "Aaron James Judge",
+    "fullLFMName": "Judge, Aaron James",
+    "strikeZoneTop": 3.523,
+    "strikeZoneBottom": 1.778
+  },
+  "season": {
+    "season": "2026",
+    "stat": {
+      "age": 34,
+      "gamesPlayed": 66,
+      "groundOuts": 46,
+      "airOuts": 50,
+      "runs": 45,
+      "doubles": 10,
+      "triples": 0,
+      "homeRuns": 18,
+      "strikeOuts": 85,
+      "baseOnBalls": 43,
+      "intentionalWalks": 5,
+      "hits": 57,
+      "hitByPitch": 2,
+      "avg": ".241",
+      "atBats": 237,
+      "obp": ".360",
+      "slg": ".511",
+      "ops": ".871",
+      "caughtStealing": 3,
+      "stolenBases": 5,
+      "stolenBasePercentage": ".625",
+      "caughtStealingPercentage": ".375",
+      "groundIntoDoublePlay": 9,
+      "numberOfPitches": 1217,
+      "plateAppearances": 285,
+      "totalBases": 121,
+      "rbi": 41,
+      "leftOnBase": 85,
+      "sacBunts": 0,
+      "sacFlies": 1,
+      "babip": ".289",
+      "groundOutsToAirouts": "0.92",
+      "catchersInterference": 2,
+      "atBatsPerHomeRun": "13.17"
+    },
+    "team": {
+      "id": 147,
+      "name": "New York Yankees",
+      "link": "/api/v1/teams/147"
+    },
+    "player": {
+      "id": 592450,
+      "fullName": "Aaron Judge",
+      "link": "/api/v1/people/592450"
+    },
+    "league": {
+      "id": 103,
+      "name": "American League",
+      "link": "/api/v1/league/103"
+    },
+    "sport": {
+      "id": 1,
+      "link": "/api/v1/sports/1",
+      "abbreviation": "MLB"
+    },
+    "gameType": "R"
+  },
+  "career": {
+    "stat": {
+      "gamesPlayed": 1211,
+      "groundOuts": 770,
+      "airOuts": 890,
+      "runs": 918,
+      "doubles": 213,
+      "triples": 7,
+      "homeRuns": 386,
+      "strikeOuts": 1454,
+      "baseOnBalls": 860,
+      "intentionalWalks": 109,
+      "hits": 1262,
+      "hitByPitch": 42,
+      "avg": ".291",
+      "atBats": 4342,
+      "obp": ".410",
+      "slg": ".610",
+      "ops": "1.020",
+      "caughtStealing": 24,
+      "stolenBases": 70,
+      "stolenBasePercentage": ".745",
+      "caughtStealingPercentage": ".255",
+      "groundIntoDoublePlay": 125,
+      "numberOfPitches": 22116,
+      "plateAppearances": 5287,
+      "totalBases": 2647,
+      "rbi": 871,
+      "leftOnBase": 1712,
+      "sacBunts": 0,
+      "sacFlies": 34,
+      "babip": ".345",
+      "groundOutsToAirouts": "0.87",
+      "catchersInterference": 9,
+      "atBatsPerHomeRun": "11.25"
+    },
+    "team": {
+      "id": 147,
+      "name": "New York Yankees",
+      "link": "/api/v1/teams/147"
+    },
+    "player": {
+      "id": 592450,
+      "fullName": "Aaron Judge",
+      "link": "/api/v1/people/592450"
+    },
+    "league": {
+      "id": 103,
+      "name": "American League",
+      "link": "/api/v1/league/103"
+    },
+    "sport": {
+      "id": 1,
+      "link": "/api/v1/sports/1",
+      "abbreviation": "MLB"
+    },
+    "gameType": "R"
+  }
+}
+</script>
+</body>
+</html>
